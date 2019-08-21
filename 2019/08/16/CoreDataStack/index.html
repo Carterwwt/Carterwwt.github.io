@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="CoreDataStack
+NSManagedOjectModel
+NSPersistentStore 
+NSPersistentStoreCoordinator
+NSManagedObjectContext
+NSPersistentContainer
+SampleCode
+
+
+NSManagedO">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Carterwwt">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="CoreDataStack">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Carter Wang">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>CoreDataStack - Carter Wang</title>
+
+    <!-- Tachyons Core CSS -->
+    <link rel="stylesheet" href="//unpkg.com/tachyons/css/tachyons.min.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<!-- Main Content -->
+<!-- Banner -->
+<!-- Banner -->
+<div class="w-100 bg-1 ph5-ns ph3 text-light">
+    
+    <nav class="db dt-l w-100 mw8 center border-box pv3">
+        <a class="db dtc-l v-mid link dim w-100 w-25-l tc tl-l mb2 mb0-l white" href="/" title="Carter Wang">
+            <img src="http://www.codeblocq.com/assets/projects/hexo-theme-anodyne/assets/anodyne.svg" class="dib h3" alt="Carter Wang">
+        </a>
+        <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/" title="Home">
+                    Home
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/archives" title="Archives">
+                    Archives
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/tags" title="Tags">
+                    Tags
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/categories" title="Categories">
+                    Categories
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/about.html" title="About">
+                    About
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/contact.html" title="Contact">
+                    Contact
+                </a>
+            
+        </div>
+    </nav>
+
+    <!-- Title -->
+    <div class="w-100 mw8 center vh-40 dt">
+        <div class="dtc v-mid white">
+            <h1 class="f1-l f2-m tc tc-m tl-ns">CoreDataStack</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-08-16</p>
+        </div>
+    </div>
+
+    <!-- Icon -->
+    <div class="relative w-100 mw8 center white dn dn-m db-ns">
+        <i class="header-icon fa fa-file-text-o"></i>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="w-100 ph2 ph4-m ph5-l mv5 mv6-l">
+    <div class="content">
+        <div class="mw8 center">
+            <div class="cf">
+                <div class="fl w-100 w-70-l mw7 left fw3 lh-copy pr4-ns pr0-m post-content">
+                    <!-- Tags Vertical -->
+                    
+
+                    <!-- Main Post Content -->
+                    <h2 id="CoreDataStack"><a href="#CoreDataStack" class="headerlink" title="CoreDataStack"></a>CoreDataStack</h2><ul>
+<li>NSManagedOjectModel</li>
+<li>NSPersistentStore </li>
+<li>NSPersistentStoreCoordinator</li>
+<li>NSManagedObjectContext</li>
+<li>NSPersistentContainer</li>
+<li>SampleCode</li>
+</ul>
+<hr>
+<h3 id="NSManagedObjectModel"><a href="#NSManagedObjectModel" class="headerlink" title="NSManagedObjectModel"></a>NSManagedObjectModel</h3><blockquote>
+<ul>
+<li>The NSManagedObjectModel represents each object type in your app’s data model, the properties they can have, and the relationships between them. Other parts of the Core Data stack use the model to create objects, store properties and save data.</li>
+<li><strong>[Note]</strong><br>The visual editor creates and edits an xcdatamodel file. There’s a special compiler, momc, that compiles the model file into a set of files in a momd folder.<br>Just as your Swift code is compiled and optimized so it can run on a device, the compiled model can be accessed efficiently at runtime. Core Data uses the compiled contents of the momd folder to initialize an NSManagedObjectModel at runtime.</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="NSPersistentStore"><a href="#NSPersistentStore" class="headerlink" title="NSPersistentStore"></a>NSPersistentStore</h3><blockquote>
+<p>NSPersistentStore reads and writes data to whichever storage method you’ve decided to use. </p>
+<p><strong>Core Data provides four types of NSPersistentStore out of the box: three atomic and one non-atomic.</strong></p>
+<p><strong>[Note]</strong></p>
+<p>An <strong>atomic</strong> persistent store needs to be completely deserialized and loaded into memory before you can make any read or write operations. In contrast, a <strong>non-atomic</strong> persistent store can load chunks of itself onto memory as needed.</p>
+</blockquote>
+<h4 id="CoreDataStoreType"><a href="#CoreDataStoreType" class="headerlink" title="CoreDataStoreType"></a>CoreDataStoreType</h4><h5 id="NSQLiteStoreType"><a href="#NSQLiteStoreType" class="headerlink" title="NSQLiteStoreType"></a>NSQLiteStoreType</h5><blockquote>
+<p>NSQLiteStoreType is backed by an SQLite database. It’s <strong>the only non-atomic</strong> store type Core Data supports out of the box, giving it a lightweight and efficient memory footprint. This makes it the best choice for most iOS projects. Xcode’s Core Data template uses this store type by <strong>default</strong>.</p>
+</blockquote>
+<h5 id="NSXMLStoreType"><a href="#NSXMLStoreType" class="headerlink" title="NSXMLStoreType"></a>NSXMLStoreType</h5><blockquote>
+<p>NSXMLStoreType is backed by an XML file, making it the most human-readable of all the store types. This store type is atomic, so it can have a large memory footprint. NSXMLStoreType is <strong>only available on OS X</strong>.</p>
+</blockquote>
+<h5 id="NSBinaryStoreType"><a href="#NSBinaryStoreType" class="headerlink" title="NSBinaryStoreType"></a>NSBinaryStoreType</h5><blockquote>
+<p>NSBinaryStoreType is backed by a binary data file. Like NSXMLStoreType, it’s also an atomic store, so the entire binary file must be loaded onto memory before you can do anything with it. You’ll rarely find this type of persistent store in real-world applications.</p>
+</blockquote>
+<h5 id="NSInMemoryStoreType"><a href="#NSInMemoryStoreType" class="headerlink" title="NSInMemoryStoreType"></a>NSInMemoryStoreType</h5><blockquote>
+<p>NSInMemoryStoreType is the <strong>in-memory persistent store type</strong>. <strong>In a way, this store type is not really persistent</strong>. Terminate the app or turn off your phone, and the data stored in an in-memory store type disappears into thin air. Although this may seem to defeat the purpose of Core Data, <strong>in-memory persistent stores can be helpful for unit testing and some types of caching.</strong></p>
+</blockquote>
+<hr>
+<h3 id="NSPersistentStoreCoordinator"><a href="#NSPersistentStoreCoordinator" class="headerlink" title="NSPersistentStoreCoordinator"></a>NSPersistentStoreCoordinator</h3><blockquote>
+<p>NSPersistentStoreCoordinator is <strong>the bridge between the managed object model and the persistent store</strong>. It’s responsible for using the model and the persistent stores to do most of the hard work in Core Data. It understands the NSManagedObjectModel and knows how to send information to, and fetch information from, the NSPersistentStore.</p>
+<p>NSPersistentStoreCoordinator also <strong>hides the implementation details of how your persistent store or stores are configured</strong>. This is useful for two reasons:</p>
+<ol>
+<li>NSManagedObjectContext (coming next!) doesn’t have to know if it’s saving to an SQLite database, XML file or even a custom incremental store.</li>
+<li>If you have multiple persistent stores, the persistent store coordinator presents a unified interface to the managed context. As far as the managed context is concerned, it always interacts with a single, aggregate persistent store.</li>
+</ol>
+</blockquote>
+<hr>
+<h3 id="NSManagedObjectContext"><a href="#NSManagedObjectContext" class="headerlink" title="NSManagedObjectContext"></a>NSManagedObjectContext</h3><blockquote>
+<ul>
+<li>A context is an in-memory scratchpad for working with your managed objects.</li>
+<li>You do all of the work with your Core Data objects within a managed object context.</li>
+<li>Any changes you make won’t affect the underlying data on disk until you call save( ) on the context.</li>
+<li>The context <strong>manages the lifecycle of the objects it creates or fetches</strong>. This lifecycle management includes powerful features such as faulting, inverse relationship handling and validation.</li>
+<li>A managed object cannot exist without an associated context. In fact, a managed object and its context are so tightly coupled that every managed object keeps a reference to its context, which can be accessed like so:<figure class="highlight plain"><figcaption><span>managedContext </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&gt; - Contexts are very territorial; once a managed object has associated with a particular context, it will remain associated with the same context for the duration of its lifecycle.</span><br><span class="line">&gt; - An application can use more than one context — most non-trivial Core Data applications fall into this category. Since a context is an in-memory scratch pad for what’s on disk, you can actually load the same Core Data object onto two different contexts simultaneously.</span><br><span class="line">&gt; - A context is not thread-safe. The same goes for a managed object: You can only interact with contexts and managed objects on the same thread in which they were created.</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">### NSPersistentContainer</span><br><span class="line"></span><br><span class="line">&gt; The name of this class is NSPersistentContainer and as its name implies, it’s a container that holds everything together. Instead of wasting your time writing boilerplate code to wire up all four stack components together, you can simply initialize an NSPersistentContainer, load its persistent stores, and you’re good to go.</span><br><span class="line"></span><br><span class="line">### Sample Code</span><br><span class="line"></span><br><span class="line">```swift</span><br><span class="line">import Foundation</span><br><span class="line">import CoreData</span><br><span class="line"></span><br><span class="line">class CoreDataStack &#123;</span><br><span class="line">  </span><br><span class="line">  private let modelName: String</span><br><span class="line"></span><br><span class="line">  init(modelName: String) &#123;</span><br><span class="line"></span><br><span class="line">   self.modelName = modelName</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  lazy var managedContext: NSManagedObjectContext = &#123;</span><br><span class="line"></span><br><span class="line">    return self.storeContainer.viewContext</span><br><span class="line"></span><br><span class="line">  &#125;()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  private lazy var storeContainer: NSPersistentContainer = &#123;</span><br><span class="line"></span><br><span class="line">    let container = NSPersistentContainer(name: self.modelName)</span><br><span class="line"></span><br><span class="line">   container.loadPersistentStores &#123; (storeDescription, error) in</span><br><span class="line">      if let error = error as NSError? &#123;</span><br><span class="line">        print(&quot;Unresolved error \(error), \(error.userInfo)&quot;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return container</span><br><span class="line">  &#125;()</span><br><span class="line"></span><br><span class="line">  func saveContext () &#123;</span><br><span class="line"></span><br><span class="line">    guard managedContext.hasChanges else &#123; return &#125;</span><br><span class="line"></span><br><span class="line">    do &#123;</span><br><span class="line">      try managedContext.save()</span><br><span class="line">    &#125; catch let nserror as NSError &#123;</span><br><span class="line">      print(&quot;Unresolved error \(nserror), \(nserror.userInfo)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+
+                    
+                    <!-- Tags Bottom -->
+                    
+
+                    <!-- Comments -->
+                    
+
+
+
+                </div>
+                <div class="fl w-100 w-30-l center fw3 lh-copy pl4-ns tl black-50">
+                    
+                    <hr class="dn-l mw4 black-50 mt5">
+                    
+                    <!-- Widget 1: About -->
+                    <div class="mt5 mt0-l">
+    <article class="dt db-l mw8 mw8-m mw5-ns center ml0-l bg-white mv3">
+        <div class="dn dtc-m db-l v-mid tc pr4 pr0-l" style="min-width: 6rem;">
+            <img src="http://tachyons.io/img/avatar_1.jpg" class="mb4-l br-100 h3 w3 h4-l w4-l dib" title="Carterwwt">
+        </div>
+        <div class="dtc db-l v-mid lh-copy measure center f6 black-50 tj">
+            My name is Jonathan Klughertz and this is my blog.<br>I am a full stack software engineer with a strong front-end focus.<br> I currently live and work in Singapore, hit me up if you are in the region.
+        </div>
+    </article>
+</div>
+
+                    <hr class="dn-l mw4 black-50 mt5">
+                    
+                    <!-- Widget 2: Categories -->
+                    
+
+                    <!-- Widget 3: Recent Posts -->
+                    <div class="mt5 tc tl-l">
+    <h3>Recent Posts</h3>
+    
+        <p>
+            <a href="/2019/08/22/Binary Search/">Binary Search Three ways of implementation</a>
+        </p>
+    
+        <p>
+            <a href="/2019/08/16/CoreDataStack/">CoreDataStack</a>
+        </p>
+    
+        <p>
+            <a href="/2019/05/28/Getting-Started/">Getting Started</a>
+        </p>
+    
+        <p>
+            <a href="/2019/05/28/hello-world/">Hello World</a>
+        </p>
+    
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<div class="bg-1 ph2 ph5-ns pv5">
+        <div class="mv8">
+            <div class="center tc">
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://twitter.com/?lang=en" target="_blank">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://www.facebook.com/" target="_blank">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://dribbble.com/" target="_blank">
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://github.com/klugjo/hexo-theme-anodyne" target="_blank">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://plus.google.com/" target="_blank">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://www.behance.net/" target="_blank">
+                            <i class="fa fa-behance"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://500px.com/" target="_blank">
+                            <i class="fa fa-500px"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="mailto:test@example.com" target="_blank">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="/#" target="_blank">
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="f6 f5-ns center tc white pt5 fw3">
+                @Untitled. All right reserved | Design & Hexo <a class="link dim white" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+            </div>
+        </div>
+    </div>
+
+<!-- After Footer -->
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
