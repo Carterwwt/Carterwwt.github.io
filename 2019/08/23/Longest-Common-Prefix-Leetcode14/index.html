@@ -145,7 +145,7 @@
 <h4 id="1-Horizontal-Scanning"><a href="#1-Horizontal-Scanning" class="headerlink" title="1. Horizontal Scanning"></a>1. Horizontal Scanning</h4><p>解题思路原文在LeetCode中都有。<a href="https://leetcode.com/problems/longest-common-prefix/solution/" target="_blank" rel="noopener">这里给一个链接</a></p>
 <p>我根据自己的理解对其中的图解做一个说明和给出c++代码与注释。</p>
 <p><strong>以下图片引用自 Leetcode</strong></p>
-<p><img src="/.com//leetcode14_solution.png" width="600" align="left"> </p>
+<p><img src="https://ftp.bmp.ovh/imgs/2019/08/998f210779001fc6.png" width="600" align="left"> </p>
 <p>①假设选定第一个单词leets为LCP(longest common prefix),从左到右依次比较。先与leetcode对比，不断丢弃LCP(leets)的尾部字符直到成为leetcode的一个前缀，这时LCP变为leet，这是当前扫描到的前两个单词的LCP。</p>
 <p>②用当前LCP(leet)去跟下一个单词作对比，发现两单词相同，直接跳过。</p>
 <p>③用当前LCP(leet)跟下一个单词leeds作对比，不断抛弃leet的末尾字符直到成为leeds的一个前缀，即LCP此时为lee</p>
