@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>浦东公租房与班车地图</title>
+    <style>
+        #map-container {
+            width: 100%;
+            height: 800px;
+        }
+    </style>
+    <script type="text/javascript">
+        window._AMapSecurityConfig = {
+            securityJsCode: "cf3973bb8270302fb372cbe696992ad5",
+        };
+    </script>
+    <script src="https://webapi.amap.com/maps?v=2.0&key=9f768a0efd36b710e294263a060c41f0"></script>
+    <!-- 引入 AMapUI 的 JS 文件 -->
+    <script src="https://webapi.amap.com/ui/1.1/main.js"></script>
+    <!-- 引入 jQuery（AMapUI 依赖） -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="map-container"></div>
+    <script>
+        // 嵌入 CSV 数据
+        var houses = [{"name":"杜鹃路188弄（花木星辰苑）","address":"上海市浦东新区杜鹃路188弄","longitude":"121.550272","latitude":"31.202338"},{"name":"新浦路91弄（三林世博家园）","address":"上海市浦东新区新浦路91弄","longitude":"121.539326","latitude":"31.163917"},{"name":"秀沿路58弄（海上溪云）","address":"上海市浦东新区秀沿路58弄","longitude":"121.546440","latitude":"31.132882"},{"name":"永泰路630弄（永泰花苑）","address":"上海市浦东新区永泰路630弄","longitude":"121.517714","latitude":"31.137685"},{"name":"启帆路199弄（星耀名邸）","address":"上海市浦东新区启帆路199弄","longitude":"121.583710","latitude":"31.312848"},{"name":"芳华路739弄（苗桐佳苑北区）","address":"上海市浦东新区芳华路739弄","longitude":"121.565215","latitude":"31.197400"},{"name":"浦三路926弄（浦三锦苑）","address":"上海市浦东新区浦三路926弄","longitude":"121.519249","latitude":"31.180510"},{"name":"芳华路788弄（苗桐佳苑南区）","address":"上海市浦东新区芳华路788弄","longitude":"121.565082","latitude":"31.194942"},{"name":"康泽路555弄（壹府澜庭）","address":"上海市浦东新区康泽路555弄","longitude":"121.561629","latitude":"31.116536"},{"name":"庙港路188弄（申鸿苑）","address":"上海市浦东新区庙港路188弄","longitude":"121.638453","latitude":"31.260791"},{"name":"民生路318弄(馨澜公寓)","address":"上海市浦东新区民生路318弄","longitude":"121.540972","latitude":"31.239988"},{"name":"千汇路198弄（公元2040）","address":"上海市浦东新区千汇路198弄","longitude":"121.769555","latitude":"31.105503"},{"name":"杨辉路966弄（祥云华亭苑）","address":"上海市浦东新区杨辉路966弄","longitude":"121.664292","latitude":"31.032674"},{"name":"周东南路388弄（丰和雅苑）","address":"上海市浦东新区周东南路388弄","longitude":"121.589279","latitude":"31.100818"},{"name":"航亭环路399弄（东方鸿璟园）","address":"上海市浦东新区航亭环路399弄","longitude":"121.762588","latitude":"31.100132"},{"name":"德州路300弄（长德小区）","address":"上海市浦东新区德州路300弄","longitude":"121.490454","latitude":"31.167508"},{"name":"三舒路62弄（城林美苑）","address":"上海市浦东新区三舒路62弄","longitude":"121.502770","latitude":"31.124817"},{"name":"宣黄公路2585弄（惠南宝业华庭）","address":"上海市浦东新区宣黄公路2585弄","longitude":"121.738080","latitude":"31.026540"},{"name":"上南路3323弄（仁文公寓）","address":"上海市浦东新区上南路3323弄","longitude":"121.499889","latitude":"31.158493"},{"name":"蓝村路470弄","address":"上海市浦东新区蓝村路470弄","longitude":"121.525320","latitude":"31.211110"},{"name":"大道站路94弄","address":"上海市浦东新区大道站路94弄","longitude":"121.539192","latitude":"31.159292"},{"name":"潍坊五村521号","address":"上海市浦东新区潍坊五村521号","longitude":"121.523317","latitude":"31.220084"},{"name":"金桥路3299弄（三桥小区）","address":"上海市浦东新区金桥路3299弄","longitude":"121.607794","latitude":"31.223276"},{"name":"勤政路88弄（华发四季苑）","address":"上海市浦东新区勤政路88弄","longitude":"121.624373","latitude":"31.173197"},{"name":"康涵路58弄（世茂云图）","address":"上海市浦东新区康涵路58弄","longitude":"121.546449","latitude":"31.116329"},{"name":"川和路399弄（张江兴科苑）","address":"上海市浦东新区川和路399弄","longitude":"121.612580","latitude":"31.180300"},{"name":"妙川路800弄（川沙博景苑）","address":"上海市浦东新区妙川路800弄","longitude":"121.704102","latitude":"31.176698"},{"name":"渡桥路78弄（中骏柏景湾）","address":"上海市浦东新区渡桥路78弄","longitude":"121.547011","latitude":"31.118046"},{"name":"上南路3880弄","address":"上海市浦东新区上南路3880弄","longitude":"121.503901","latitude":"31.149588"},{"name":"秋亭路88弄（朗诗未来树）","address":"上海市浦东新区秋亭路88弄","longitude":"121.761991","latitude":"31.097684"},{"name":"枣庄路1029弄","address":"上海市浦东新区枣庄路1029弄","longitude":"121.586733","latitude":"31.246691"},{"name":"崇溪路111弄（绣云新都）","address":"上海市浦东新区崇溪路111弄","longitude":"121.711328","latitude":"31.108526"},{"name":"杜鹃路188弄（花木星辰苑）","address":"上海市浦东新区杜鹃路188弄","longitude":"121.550272","latitude":"31.202338"},{"name":"浦三路930弄（艾东苑）","address":"上海市浦东新区浦三路930弄","longitude":"121.519689","latitude":"31.179524"},{"name":"浦东大道1611号","address":"上海市浦东新区浦东大道1611号","longitude":"121.541619","latitude":"31.244783"},{"name":"永泰路136弄","address":"上海市浦东新区永泰路136弄","longitude":"121.504569","latitude":"31.134600"},{"name":"潍坊五村513号","address":"上海市浦东新区潍坊五村513号","longitude":"121.523317","latitude":"31.220084"},{"name":"峨山路180弄","address":"上海市浦东新区峨山路180弄","longitude":"121.527674","latitude":"31.213818"}];
+        var shuttle = [{"班车号":"1号","路线":"中山公园","车牌":"沪FD0815","车型":"金旅","到站时间":"07:00:00","name":"延安西路程家桥路","longitude":"121.375117","latitude":"31.185275"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:20:00","name":"长宁路娄山关路公交站","longitude":"121.404344","latitude":"31.210724"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:30:00","name":"凯旋路汇川路公交站","longitude":"121.417364","latitude":"31.216742"},{"班车号":"2号","路线":"梅陇","车牌":"沪FA1511","车型":"大通","到站时间":"06:50:00","name":"莘庄(莘松路莘东路) 公交站","longitude":"121.376991","latitude":"31.108371"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:00:00","name":"龙茗路公交站","longitude":"121.387863","latitude":"31.134375"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:20:00","name":"凌云路梅陇路公交站","longitude":"120.201454","latitude":"29.019679"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:25:00","name":"老沪闵路嘉川路公交站","longitude":"121.424569","latitude":"31.137557"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:30:00","name":"上中西路老沪闵路公交站","longitude":"121.431611","latitude":"31.136294"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:35:00","name":"上中西路龙川路公交站","longitude":"117.268014","latitude":"31.801350"},{"班车号":"3号","路线":"共富新村","车牌":"沪EP5273","车型":"大通","到站时间":"07:00:00","name":"长江西路通河路公交站","longitude":"121.446386","latitude":"31.333257"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:03:00","name":"通河路共江路\/共康八村公交站","longitude":"121.435555","latitude":"31.324116"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:05:00","name":"共康东路岭南路公交站","longitude":"121.457848","latitude":"31.322956"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:10:00","name":"汾西路阳曲路交行门口公交站","longitude":"121.461089","latitude":"31.313748"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:15:00","name":"共和新路闻喜路公交站","longitude":"121.448540","latitude":"31.309002"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:25:00","name":"广粤路奎照路公交站","longitude":"121.467339","latitude":"31.299227"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:40:00","name":"万安路逸仙路公交站","longitude":"121.488133","latitude":"31.326736"},{"班车号":"4号","路线":"徐家汇","车牌":"沪FA5278","车型":"大通","到站时间":"07:35:00","name":"大木桥路茶陵路公交站","longitude":"121.464692","latitude":"31.197257"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:40:00","name":"斜土路鲁班路公交站","longitude":"121.476976","latitude":"31.203519"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:45:00","name":"斜土路西藏南路公交站","longitude":"121.486844","latitude":"31.209528"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:50:00","name":"国货路普育东路公交站","longitude":"121.496098","latitude":"31.209749"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"08:00:00","name":"浦东南路浦建路公交站","longitude":"121.516415","latitude":"31.209796"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"08:10:00","name":"民生路杨高中路公交站","longitude":"121.548664","latitude":"31.227510"},{"班车号":"5号","路线":"川沙","车牌":"沪EQ0268","车型":"大通","到站时间":"07:15:00","name":"川周公路华戴路公交站","longitude":"121.698359","latitude":"31.179941"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:20:00","name":"华夏二路润川路公交站","longitude":"121.690717","latitude":"31.175566"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:30:00","name":"华夏东路华夏三路公交站","longitude":"121.677780","latitude":"31.197268"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:40:00","name":"唐安路唐镇路公交站","longitude":"121.652010","latitude":"31.209206"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:50:00","name":"高科中路张东路\/张江家乐福公交站","longitude":"121.614572","latitude":"31.198681"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"08:00:00","name":"张江路高科中路公交站","longitude":"121.620151","latitude":"31.200506"},{"班车号":"6号","路线":"徐汇-星中路","车牌":"沪ET0038","车型":"大通","到站时间":"07:00:00","name":"星中路(漕宝路)地铁站","longitude":"121.397401","latitude":"31.160303"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:20:00","name":"钦州南路虹漕南路公交站","longitude":"121.414864","latitude":"31.157005"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:35:00","name":"龙漕路三江路公交站","longitude":"121.438777","latitude":"31.164705"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:40:00","name":"龙耀路喜泰路公交站","longitude":"121.453280","latitude":"31.159476"},{"班车号":"7号","路线":"普陀-虹足","车牌":"沪FA7781","车型":"大通","到站时间":"07:00:00","name":"曹安路万镇路(公交站)","longitude":"121.376266","latitude":"31.250204"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:20:00","name":"金沙江路中山北路公交站","longitude":"121.408954","latitude":"31.231432"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:25:00","name":"中山北路曹杨路公交站","longitude":"121.414722","latitude":"31.237773"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:30:00","name":"中山北路光新路公交站","longitude":"121.431756","latitude":"31.249181"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:50:00","name":"中心北路同心路公交站","longitude":"111.072857","latitude":"25.932730"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:55:00","name":"虹口足球场公交站","longitude":"121.479167","latitude":"31.271610"},{"班车号":"8号","路线":"虹口提篮桥","车牌":"沪ES7749","车型":"大通","到站时间":"07:20:00","name":"中山北二路曲阳路公交站","longitude":"121.494375","latitude":"31.285665"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:40:00","name":"东沙虹港路天镇路公交站","longitude":"121.499019","latitude":"31.267644"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:43:00","name":"天虹路三河路公交站","longitude":"103.958256","latitude":"30.749390"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:48:00","name":"许昌路飞虹路公交站","longitude":"125.400284","latitude":"43.799492"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"08:00:00","name":"江浦路盐山路公交站","longitude":"121.529439","latitude":"31.257497"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"08:05:00","name":"平凉路眉州路公交站","longitude":"121.534149","latitude":"31.261637"},{"班车号":"9号","路线":"沪太路(大华)","车牌":"沪EG5617","车型":"大通","到站时间":"07:10:00","name":"大华三路地铁站-7号线","longitude":"121.422949","latitude":"31.274047"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:25:00","name":"平利路西乡路","longitude":"121.426837","latitude":"31.267622"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:30:00","name":"万荣路延长中路公交站","longitude":"121.450656","latitude":"31.269501"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:35:00","name":"中山北路普善路公交站","longitude":"121.455841","latitude":"31.259521"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"08:05:00","name":"周家嘴路黄兴路公交站","longitude":"121.531470","latitude":"31.275908"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"08:10:00","name":"周家嘴路隆昌路公交站","longitude":"121.542016","latitude":"31.278619"},{"班车号":"10号","路线":"浦东周浦","车牌":"沪ER0717","车型":"大通","到站时间":"07:20:00","name":"上南路康沈路公交站","longitude":"121.572483","latitude":"31.118433"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:25:00","name":"沪南路上南路公交站","longitude":"120.942583","latitude":"28.001349"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:30:00","name":"沪南公路秀浦路公交站","longitude":"121.566415","latitude":"31.125456"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:45:00","name":"沪南路康花路(东郊百联）公交站","longitude":"121.532915","latitude":"31.201957"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"08:00:00","name":"龙阳路地铁站公交站","longitude":"121.559288","latitude":"31.201638"},{"班车号":"11号","路线":"闵行颛桥","车牌":"沪EL3573","车型":"大通","到站时间":"07:00:00","name":"沪闵路颛兴路公交站","longitude":"121.389694","latitude":"31.064388"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:10:00","name":"申北路中春路公交站","longitude":"121.379132","latitude":"31.089141"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:20:00","name":"春申路宝城路公交站","longitude":"121.391074","latitude":"31.109270"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:25:00","name":"兴梅路莲花南路公交站","longitude":"103.643646","latitude":"30.986502"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:30:00","name":"春申路虹梅南路公交站","longitude":"121.426610","latitude":"31.113312"},{"班车号":"12路","路线":"宝山-中原","车牌":"沪FA8136","车型":"考斯特","到站时间":"07:05:00","name":"牡丹江路宝杨路公交站","longitude":"121.479442","latitude":"31.395743"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:07:00","name":"牡丹江路海江路公交站","longitude":"121.488126","latitude":"31.394291"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:15:00","name":"泰和路公交站","longitude":"87.647933","latitude":"43.750085"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:35:00","name":"中原路殷行路公交站","longitude":"121.516505","latitude":"31.328754"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:45:00","name":"包头路开鲁路公交站","longitude":"121.538498","latitude":"31.322586"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:50:00","name":"包头路市光路公交站","longitude":"121.538506","latitude":"31.320679"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"08:00:00","name":"民星路包头路公交站","longitude":"121.540855","latitude":"31.311570"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"08:05:00","name":"翔殷路翔殷支路公交站","longitude":"121.541075","latitude":"31.305895"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"08:15:00","name":"金桥路博山东路公交站","longitude":"121.567820","latitude":"31.252385"},{"班车号":"13路","路线":"外高桥","车牌":"沪FC8312","车型":"考斯特","到站时间":"07:10:00","name":"高桥公园公交站","longitude":"120.644362","latitude":"30.751428"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:12:00","name":"张杨路高荷路公交站","longitude":"121.576083","latitude":"31.336451"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:18:00","name":"秋霞路季景路公交站","longitude":"121.588426","latitude":"31.337339"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:35:00","name":"东靖路莱阳路公交站","longitude":"121.583455","latitude":"31.291593"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:40:00","name":"莱阳路东陆路公交站","longitude":"121.584145","latitude":"31.282513"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:43:00","name":"五莲路兰城路公交站","longitude":"121.584957","latitude":"31.270426"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:48:00","name":"张杨路博兴路公交站","longitude":"106.490890","latitude":"29.724062"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:50:00","name":"博兴路荷泽路公交站","longitude":"121.593254","latitude":"31.265965"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:55:00","name":"博兴路凌河路公交站","longitude":"121.601354","latitude":"31.271372"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"08:05:00","name":"金高路佳林路公交站","longitude":"121.609297","latitude":"31.267591"},{"班车号":"14路","路线":"浦东上浦路","车牌":"沪EP0561","车型":"考斯特","到站时间":"07:00:00","name":"永泰路上南路公交站","longitude":"121.512472","latitude":"31.140995"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:10:00","name":"长清路凌兆路公交站","longitude":"121.496823","latitude":"31.140673"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:15:00","name":"上南路华夏路公交站","longitude":"121.536775","latitude":"31.156674"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:25:00","name":"成山路上南路公交站","longitude":"121.497535","latitude":"31.171458"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:30:00","name":"昌里路云台路公交站","longitude":"121.503273","latitude":"31.175678"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:35:00","name":"齐河路南码头路公交站","longitude":"121.513580","latitude":"31.182236"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:38:00","name":"高科西路浦三路公交站","longitude":"121.518387","latitude":"31.187330"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:40:00","name":"高科西路杨高南路公交站","longitude":"121.524881","latitude":"31.187510"},{"班车号":"15号","路线":"新闸路","车牌":"沪EL2819","车型":"考斯特","到站时间":"07:15:00","name":"山海关路成都北路公交站","longitude":"121.466657","latitude":"31.231097"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:25:00","name":"浦东大道崂山路公交站","longitude":"121.800850","latitude":"29.930637"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:35:00","name":"栖山路巨野路公交站","longitude":"121.545026","latitude":"31.243190"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:40:00","name":"崮山路博山东路公交站","longitude":"121.567820","latitude":"31.252385"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:44:00","name":"德平路博山东路公交站","longitude":"121.560562","latitude":"31.250694"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:50:00","name":"羽山路德平路公交站","longitude":"121.567386","latitude":"31.244468"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:54:00","name":"金杨路金口路公交站","longitude":"121.580158","latitude":"31.249385"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:58:00","name":"银山路枣庄路公交站","longitude":"121.576844","latitude":"31.252980"},{"班车号":"16号","路线":"闵行高华小区","车牌":"沪FA7507","车型":"大巴","到站时间":"06:40:00","name":"兰坪路江川路(高华小区)公交站","longitude":"121.422070","latitude":"31.004613"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"06:45:00","name":"安宁路二街坊门口公交站","longitude":"119.355302","latitude":"25.944339"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"06:48:00","name":"东川路碧江路公交站","longitude":"121.402383","latitude":"31.009249"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"06:50:00","name":"东川路金平路公交站","longitude":"117.018411","latitude":"40.042101"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"06:55:00","name":"金平小区门口公交站","longitude":"119.355302","latitude":"25.944339"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:05:00","name":"安宁路剑川路公交站","longitude":"121.416806","latitude":"31.026257"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:15:00","name":"沪闵路北宋公路-5号北桥地铁站","longitude":"121.410054","latitude":"31.045112"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:20:00","name":"放鹤路虹梅南路公交站","longitude":"121.454332","latitude":"31.047800"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:40:00","name":"浦星公路\/联达路(近沈杜公路地铁站)","longitude":"121.514006","latitude":"31.060334"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:50:00","name":"江月路地铁站","longitude":"121.508603","latitude":"31.084253"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"08:00:00","name":"芦恒路地铁站","longitude":"121.498226","latitude":"31.119059"},{"班车号":"17号","路线":"老闵行(翻版)","车牌":"沪EJ5669","车型":"金旅","到站时间":"06:20:00","name":"东川路碧江路公交站","longitude":"121.402383","latitude":"31.009249"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"06:23:00","name":"瑞丽路公交站","longitude":"114.347687","latitude":"22.692862"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"06:25:00","name":"安宁路东川路公交站","longitude":"113.286267","latitude":"23.122804"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"06:50:00","name":"沈杜公路公交站","longitude":"121.512145","latitude":"31.061389"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:40:00","name":"银山路枣庄路公交站","longitude":"121.576844","latitude":"31.252980"},{"班车号":"18号","路线":"闵行南方(翻版)","车牌":"沪EH1228","车型":"大通","到站时间":"06:40:00","name":"沪闵路莲花路(南方商城)公交站","longitude":"121.395566","latitude":"31.156901"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"06:50:00","name":"漕河泾八五医院","longitude":"102.611458","latitude":"37.724867"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:05:00","name":"建国路重庆南路(交大学院)公交站","longitude":"121.470964","latitude":"31.215597"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:25:00","name":"2号线龙阳路","longitude":"120.436691","latitude":"36.115524"},{"班车号":"19号","路线":"张庙(翻版)","车牌":"沪EB7900","车型":"大通","到站时间":"06:15:00","name":"长江西路虎林路(张庙)公交站","longitude":"121.450263","latitude":"31.336744"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"06:25:00","name":"长江西路淞南路公交站","longitude":"120.671878","latitude":"31.185729"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"06:45:00","name":"宝林路牡丹江路公交站","longitude":"121.485425","latitude":"31.400846"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:00:00","name":"逸仙路江湾镇公交站","longitude":"121.485730","latitude":"31.302570"},{"班车号":null,"路线":null,"车牌":null,"车型":null,"到站时间":"07:20:00","name":"黄兴路延吉东路公交站","longitude":"121.542367","latitude":"31.289647"}];
+
+        // 初始化地图
+        var map = new AMap.Map('map-container', {
+            zoom: 12, // 缩放级别
+            center: [121.612600, 31.243856] // 地图中心点（你上班的位置）
+        });
+
+        //设置DomLibrary，jQuery或者Zepto
+        AMapUI.setDomLibrary($);
+
+        //加载BasicControl，loadUI的路径参数为模块名中 'ui/' 之后的部分
+        AMapUI.loadUI(['control/BasicControl'], function (BasicControl) {
+            //缩放控件
+            map.addControl(new BasicControl.Zoom({
+                position: 'lt', //left top，左上角
+                showZoomNum: true //显示zoom值
+            }));
+
+            //图层切换控件
+            map.addControl(new BasicControl.LayerSwitcher({
+                position: 'rt' //right top，右上角
+            }));
+
+            //实时交通控件
+            map.addControl(new BasicControl.Traffic({
+                position: 'lb' //left bottom, 左下角
+            }));
+        });
+
+
+        AMapUI.loadUI(['overlay/AwesomeMarker'], function (AwesomeMarker) {
+
+            // 标注你上班的位置（工作地点图标）
+            new AwesomeMarker({
+                awesomeIcon: 'arrows', // 图标类型
+                iconLabel: {
+                    style: {
+                        color: '#333', // 图标颜色设置为黑色
+                        fontSize: '15px' // 设置字号
+                    }
+                },
+                // 自定义背景样式
+                iconStyle: 'orange',
+                map: map,
+                title: '上班地点',
+                position: [121.612600, 31.243856]
+            });
+
+            // 标注公租房位置（房子图标）
+            houses.forEach(function (house) {
+                new AwesomeMarker({
+                    awesomeIcon: 'home', // 图标类型
+                    iconLabel: {
+                        style: {
+                            color: '#333', // 图标颜色设置为黑色
+                            fontSize: '16px' // 设置字号
+                        }
+                    },
+                    // 自定义背景样式
+                    iconStyle: {
+                        src: 'https://webapi.amap.com/theme/v1.3/markers/b/mark_b.png',
+                        style: {
+                            width: '22px',
+                            height: '32px'
+                        }
+                    },
+                    map: map,
+                    title: house.name,
+                    position: [house.longitude, house.latitude]
+                });
+            });
+            
+            // 标注班车上下车点（公交车图标）
+            shuttle.forEach(function (point) {
+                new AwesomeMarker({
+                    awesomeIcon: 'bus', // 图标类型
+                    iconLabel: {
+                        style: {
+                            color: '#333', // 图标颜色设置为黑色
+                            fontSize: '16px' // 设置字号
+                        }
+                    },
+                    // 自定义背景样式
+                    iconStyle: {
+                        src: 'https://webapi.amap.com/theme/v1.3/markers/b/mark_g.png',
+                        style: {
+                            width: '22px',
+                            height: '32px'
+                        }
+                    },
+                    map: map,
+                    title: point.name + point.到站时间,
+                    position: [point.longitude, point.latitude]
+                });
+            });
+
+        });
+    </script>
+</body>
+
+</html>
